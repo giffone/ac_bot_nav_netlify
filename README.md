@@ -1,2 +1,2 @@
-# ac_bot_nav_netlify
-navigation menu for ac_bot (netlify version)
+# ac_bot
+bot for monitoring cadets' visits to the academy: start of session, end of session, activation of accounts on campus computers, list of cadets to guard the building

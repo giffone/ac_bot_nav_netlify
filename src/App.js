@@ -1,10 +1,10 @@
 import "./App.css";
 import { useEffect } from "react";
 import { mytelegram } from "./hooks/mytelegram";
-import Header from "./components/Header/Header";
+import Header from "./Components/Header/Header";
 import { Route, Routes } from "react-router-dom";
-import RegisterForm from "./components/RegisterForm/RegisterForm";
-import Menu from "./components/Menu/Menu";
+import RegisterForm from "./Components/RegisterForm/RegisterForm";
+import Menu from "./Components/Menu/Menu";
 
 function App() {
   const { tg } = mytelegram();

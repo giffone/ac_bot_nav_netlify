@@ -1,13 +1,13 @@
 import "./App.css";
 import { useEffect } from "react";
-import { mytelegram } from "./hooks/mytelegram";
+import { useTelegram } from "./hooks/useTelegram";
 import Header from "./Components/Header/Header";
 import { Route, Routes } from "react-router-dom";
 import RegisterForm from "./Components/RegisterForm/RegisterForm";
 import Menu from "./Components/Menu/Menu";
 
 function App() {
-  const { tg } = mytelegram();
+  const { tg } = useTelegram();
 
   useEffect(() => {
     tg.ready();

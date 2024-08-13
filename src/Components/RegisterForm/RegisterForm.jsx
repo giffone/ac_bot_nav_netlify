@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import "./RegisterForm.css";
-import {mytelegram}  from "../../hooks/mytelegram.js";
+import { useTelegram } from "../../hooks/useTelegram";
 
 const RegisterForm = () => {
   const [login, SetLogin] = useState();
   const [firstName, SetFirstName] = useState();
   const [lastName, SetLastName] = useState();
-  const {tg} = mytelegram();
+  const { tg } = useTelegram();
 
   useEffect(() => {
     tg.MainButton.setParams({

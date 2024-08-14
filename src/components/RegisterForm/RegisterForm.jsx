@@ -1,12 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "./RegisterForm.css";
 import { useTelegram } from "../../hooks/useTelegram";
+
+const formType = "regform";
 
 const RegisterForm = () => {
   const [login, SetLogin] = useState();
   const [firstName, SetFirstName] = useState();
   const [lastName, SetLastName] = useState();
   const { tg } = useTelegram();
+
+  const onSendData = useCallback(() => {
+    const data = {
+      form_type: formType,
+      user_data: {
+        login: login,
+        first_name: firstName,
+        last_name: lastName,
+      },
+    };
+    tg.sendData(JSON.stringify(data));
+  }, [login, firstName, lastName]);
+
+  useEffect(() => {
+    tg.onEvent("mainButtonClicked", onSendData);
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  }, [onSendData]);
 
   useEffect(() => {
     tg.MainButton.setParams({

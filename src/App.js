@@ -4,7 +4,7 @@ import { useTelegram } from "./hooks/useTelegram";
 import Header from "./components/Header/Header";
 import { Route, Routes } from "react-router-dom";
 import RegisterForm from "./components/RegisterForm/RegisterForm";
-import Menu from "./components/Menu/Menu";
+import About from "./components/About/About";
 
 function App() {
   const { tg } = useTelegram();
@@ -17,7 +17,7 @@ function App() {
     <div className="App">
       <Header />
       <Routes>
-        <Route index element={<Menu />} />
+        <Route index element={<About />} />
         <Route path={"regform"} element={<RegisterForm />} />
       </Routes>
     </div>

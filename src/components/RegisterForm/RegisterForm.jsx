@@ -15,7 +15,7 @@ const RegisterForm = () => {
   }, []);
 
   useEffect(() => {
-    if (!login && !firstName && !lastName) {
+    if (!login || !firstName || !lastName) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();

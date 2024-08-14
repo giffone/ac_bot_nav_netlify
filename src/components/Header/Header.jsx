@@ -8,6 +8,7 @@ const Header = () => {
 
   return (
     <div className={"header"}>
+      ver 2
       <Button onClick={onClose}>Close</Button>
       <span className={"username"}>{user?.username}</span>
     </div>

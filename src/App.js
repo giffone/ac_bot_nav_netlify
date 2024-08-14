@@ -15,7 +15,6 @@ function App() {
 
   return (
     <div className="App">
-      hello there
       <Header />
       <Routes>
         <Route index element={<Menu />} />

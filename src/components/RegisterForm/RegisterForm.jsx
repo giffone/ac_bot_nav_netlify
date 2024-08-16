@@ -8,12 +8,13 @@ const RegisterForm = () => {
   const [login, SetLogin] = useState();
   const [firstName, SetFirstName] = useState();
   const [lastName, SetLastName] = useState();
-  const { tg } = useTelegram();
+  const { tg, user } = useTelegram();
 
   const onSendData = useCallback(() => {
     const data = {
       form_type: formType,
       user_data: {
+        user_id: user?.id,
         login: login,
         first_name: firstName,
         last_name: lastName,

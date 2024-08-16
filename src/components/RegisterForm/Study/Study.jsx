@@ -1,29 +1,26 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "./RegisterForm.css";
-import { useTelegram } from "../../hooks/useTelegram";
+import "../RegisterForm.css";
+import { useTelegram } from "../../../hooks/useTelegram";
 
-const formType = "/regform";
+const formType = "/regform_study";
 
-const RegisterForm = () => {
-  const [login, SetLogin] = useState();
+const RegisterFormStudy = () => {
   const [firstName, SetFirstName] = useState();
   const [lastName, SetLastName] = useState();
-  const { tg, user } = useTelegram();
-  const userId = user?.id
+  const [intraLogin, SetIntraLogin] = useState();
+  const { tg } = useTelegram();
 
   const onSendData = useCallback(() => {
     const data = {
       form_type: formType,
       user_data: {
-        user_id: userId,
-        user_name: user?.username,
-        login: login,
         first_name: firstName,
         last_name: lastName,
+        intra_login: intraLogin,
       },
     };
     tg.sendData(JSON.stringify(data));
-  }, [login, firstName, lastName]);
+  }, [ firstName, lastName, intraLogin]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
@@ -39,16 +36,12 @@ const RegisterForm = () => {
   }, []);
 
   useEffect(() => {
-    if (!login || !firstName || !lastName) {
+    if ( !firstName || !lastName || !intraLogin) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
     }
-  }, [login, firstName, lastName]);
-
-  const onChangeLogin = (e) => {
-    SetLogin(e.target.value);
-  };
+  }, [intraLogin, firstName, lastName]);
 
   const onChangeFirstName = (e) => {
     SetFirstName(e.target.value);
@@ -58,16 +51,13 @@ const RegisterForm = () => {
     SetLastName(e.target.value);
   };
 
+  const onChangeIntraLogin = (e) => {
+    SetIntraLogin(e.target.value);
+  };
+
   return (
     <div className={"regform"}>
       <h3>Input you personal data</h3>
-      <input
-        className={"input"}
-        type="text"
-        placeholder={"cadet login"}
-        value={login}
-        onChange={onChangeLogin}
-      />
       <input
         className={"input"}
         type="text"
@@ -82,8 +72,15 @@ const RegisterForm = () => {
         value={lastName}
         onChange={onChangeLastName}
       />
+      <input
+        className={"input"}
+        type="text"
+        placeholder={"intra login"}
+        value={intraLogin}
+        onChange={onChangeIntraLogin}
+      />
     </div>
   );
 };
 
-export default RegisterForm;
+export default RegisterFormStudy;

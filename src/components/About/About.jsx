@@ -5,10 +5,14 @@ const About = () => {
   const { tg } = useTelegram();
 
   const onClick = () => {
-    tg.close()
-  }
+    tg.close();
+  };
 
-  return <Button onClick={onClick}>About</Button>;
+  return (
+    <>
+      <Button onClick={onClick}>About</Button>
+    </>
+  );
 };
 
 export default About;

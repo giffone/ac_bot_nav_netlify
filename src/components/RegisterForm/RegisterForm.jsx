@@ -9,12 +9,13 @@ const RegisterForm = () => {
   const [firstName, SetFirstName] = useState();
   const [lastName, SetLastName] = useState();
   const { tg, user } = useTelegram();
+  const userId = user?.id
 
   const onSendData = useCallback(() => {
     const data = {
       form_type: formType,
       user_data: {
-        user_id: user?.id,
+        user_id: userId,
         user_name: user?.username,
         login: login,
         first_name: firstName,
@@ -22,7 +23,7 @@ const RegisterForm = () => {
       },
     };
     tg.sendData(JSON.stringify(data));
-  }, [login, firstName, lastName]);
+  }, [login, firstName, lastName, userId]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);

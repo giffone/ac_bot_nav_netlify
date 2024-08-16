@@ -15,6 +15,7 @@ const RegisterForm = () => {
       form_type: formType,
       user_data: {
         user_id: user?.id,
+        user_name: user?.username,
         login: login,
         first_name: firstName,
         last_name: lastName,

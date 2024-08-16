@@ -23,7 +23,7 @@ const RegisterForm = () => {
       },
     };
     tg.sendData(JSON.stringify(data));
-  }, [login, firstName, lastName, userId]);
+  }, [login, firstName, lastName]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);

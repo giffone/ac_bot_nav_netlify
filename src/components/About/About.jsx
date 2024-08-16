@@ -5,7 +5,6 @@ const About = () => {
   const { tg } = useTelegram();
 
   const onClick = () => {
-    tg.sendData()
     tg.close()
   }
 

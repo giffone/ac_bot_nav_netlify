@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useTelegram } from "./hooks/useTelegram";
 import Header from "./components/Header/Header";
 import { Route, Routes } from "react-router-dom";
+import Navigation from "./components/Navigation/Navigation";
+import RegisterForm from "./components/RegisterForm/RegisterFormMain";
 import RegisterFormStudy from "./components/RegisterForm/Study/Study";
 import RegisterFormGuest from "./components/RegisterForm/Guest/Guest";
-import Navigation from "./components/Navigation/Navigation";
 
 function App() {
   const { tg } = useTelegram();
@@ -19,6 +20,7 @@ function App() {
       <Header />
       <Routes>
         <Route index element={<Navigation />} />
+        <Route path={"regform"} element={<RegisterForm />} />
         <Route path={"regform_study"} element={<RegisterFormStudy />} />
         <Route path={"regform_guest"} element={<RegisterFormGuest />} />
       </Routes>

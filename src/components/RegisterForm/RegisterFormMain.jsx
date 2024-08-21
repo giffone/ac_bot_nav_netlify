@@ -1,3 +1,4 @@
+import React, { useCallback, useEffect, useState } from "react";
 import React from "react";
 import { Link } from "react-router-dom";
 import "./RegisterFormMain.css";
@@ -20,10 +21,11 @@ function RegisterForm() {
       text: text,
     };
     tg.sendData(JSON.stringify(data));
+    return true;
   };
 
   const onClickQR = () => {
-    tg.showScanQrPopup("Scan Campus QR Entrance", qrCallback);
+    tg.showScanQrPopup({ text: "Scan Campus QR Entrance" }, qrCallback);
   };
 
   return (

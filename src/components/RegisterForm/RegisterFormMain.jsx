@@ -4,7 +4,7 @@ import "./RegisterFormMain.css";
 import { useTelegram } from "../../hooks/useTelegram";
 import Button from "../Button/Button";
 
-const formType = "/regform_qr";
+const formType = "type_qr";
 
 function RegisterForm() {
   const { tg, user } = useTelegram();
@@ -16,8 +16,8 @@ function RegisterForm() {
         user_id: user?.id,
         bot: user?.is_bot,
         user_name: user?.username,
+        qr_text: text,
       },
-      text: text,
     };
     tg.sendData(JSON.stringify(data));
     return true;

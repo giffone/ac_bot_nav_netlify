@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import "../RegisterForm.css";
 import { useTelegram } from "../../../hooks/useTelegram";
 
-const formType = "/regform_study";
+const formType = "type_study";
 
 const RegisterFormStudy = () => {
   const [firstName, SetFirstName] = useState();

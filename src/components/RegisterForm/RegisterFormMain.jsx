@@ -13,9 +13,6 @@ function RegisterForm() {
     const data = {
       form_type: formType,
       user_data: {
-        user_id: user?.id,
-        bot: user?.is_bot,
-        user_name: user?.username,
         qr_text: text,
       },
     };

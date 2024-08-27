@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from "react";
-import "../RegisterForm.css";
-import { useTelegram } from "../../../hooks/useTelegram";
+import "../../Forms.css";
+import { useTelegram } from "../../../../hooks/useTelegram";
 
-const formType = "type_study";
+const formType = "type_guest";
 
-const RegisterFormStudy = () => {
-  const [firstName, SetFirstName] = useState();
-  const [lastName, SetLastName] = useState();
-  const [intraLogin, SetIntraLogin] = useState();
+const RegisterFormGuest = () => {
+  const [firstName, setFirstName] = useState();
+  const [lastName, setLastName] = useState();
+  const [inviteCode, setInviteCode] = useState();
   const { tg } = useTelegram();
 
   const onSendData = useCallback(() => {
@@ -16,11 +16,11 @@ const RegisterFormStudy = () => {
       user_data: {
         first_name: firstName,
         last_name: lastName,
-        intra_login: intraLogin,
+        invite_code: inviteCode,
       },
     };
     tg.sendData(JSON.stringify(data));
-  }, [ firstName, lastName, intraLogin]);
+  }, [ firstName, lastName, inviteCode]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
@@ -36,28 +36,28 @@ const RegisterFormStudy = () => {
   }, []);
 
   useEffect(() => {
-    if ( !firstName || !lastName || !intraLogin) {
+    if ( !firstName || !lastName || !inviteCode) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
     }
-  }, [intraLogin, firstName, lastName]);
+  }, [firstName, lastName, inviteCode]);
 
   const onChangeFirstName = (e) => {
-    SetFirstName(e.target.value);
+    setFirstName(e.target.value);
   };
 
   const onChangeLastName = (e) => {
-    SetLastName(e.target.value);
+    setLastName(e.target.value);
   };
 
-  const onChangeIntraLogin = (e) => {
-    SetIntraLogin(e.target.value);
+  const onChangeInviteCode = (e) => {
+    setInviteCode(e.target.value);
   };
 
   return (
     <div className={"regform"}>
-      <h3>Input you personal data</h3>
+      <h3>Input your personal data</h3>
       <input
         className={"input"}
         type="text"
@@ -75,12 +75,12 @@ const RegisterFormStudy = () => {
       <input
         className={"input"}
         type="text"
-        placeholder={"intra login"}
-        value={intraLogin}
-        onChange={onChangeIntraLogin}
+        placeholder={"invite code"}
+        value={inviteCode}
+        onChange={onChangeInviteCode}
       />
     </div>
   );
 };
 
-export default RegisterFormStudy;
+export default RegisterFormGuest;

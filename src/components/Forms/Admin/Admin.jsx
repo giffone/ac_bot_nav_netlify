@@ -7,7 +7,7 @@ const formType = "create_admin";
 const CreateAdmin = () => {
   const [id, setId] = useState();
   const [name, setName] = useState();
-  const [role, setRole] = useState();
+  const [role, setRole] = useState("1");
   const { tg } = useTelegram();
 
   const onSendData = useCallback(() => {

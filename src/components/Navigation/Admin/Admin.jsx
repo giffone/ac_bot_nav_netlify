@@ -7,7 +7,7 @@ const AdminForm = () => {
   const urlParams = new URLSearchParams(location.search);
 
   const roles = urlParams.get("roles");
-  const companies = urlParams.get("members");
+  const members = urlParams.get("members");
 
   return (
     <nav>

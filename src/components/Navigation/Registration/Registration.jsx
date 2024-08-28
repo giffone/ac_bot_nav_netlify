@@ -6,7 +6,7 @@ import Button from "../../Button/Button";
 
 const formType = "type_qr";
 
-function RegisterForm() {
+function RegistrationForm() {
   const { tg, user } = useTelegram();
 
   const qrCallback = (text) => {
@@ -43,4 +43,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default RegistrationForm;

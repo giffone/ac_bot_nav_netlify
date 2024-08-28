@@ -17,7 +17,7 @@ const CreateAdminForm = () => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    console.log("url params: ",urlParams.toString())
+    console.log("url params: ", urlParams.toString());
 
     const rolesParam = urlParams.get("roles");
     if (rolesParam) {
@@ -106,6 +106,9 @@ const CreateAdminForm = () => {
         onChange={onChangeName}
       />
       <select value={role} onChange={onChangeRole} className={"select"}>
+        <option value="" disabled>
+          Select role
+        </option>
         {roles.map(({ key, value }) => (
           <option key={key} value={key}>
             {value}
@@ -113,6 +116,9 @@ const CreateAdminForm = () => {
         ))}
       </select>
       <select value={member} onChange={onChangeMember} className={"select"}>
+        <option value="" disabled>
+          Select member
+        </option>
         {members.map(({ key, value }) => (
           <option key={key} value={key}>
             {value}

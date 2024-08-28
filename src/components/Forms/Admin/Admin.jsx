@@ -17,6 +17,7 @@ const CreateAdminForm = () => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
+    console.log("url params: ",urlParams)
 
     const rolesParam = urlParams.get("roles");
     if (rolesParam) {

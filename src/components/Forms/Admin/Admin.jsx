@@ -8,8 +8,8 @@ const formType = "create_admin";
 const CreateAdminForm = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
-  const [role, setRole] = useState();
-  const [member, setMember] = useState();
+  const [role, setRole] = useState("");
+  const [member, setMember] = useState("");
   const [roles, setRoles] = useState([]);
   const [members, setMembers] = useState([]);
   const { tg } = useTelegram();
@@ -18,7 +18,6 @@ const CreateAdminForm = () => {
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
 
-    // Извлечение и установка параметров ролей
     const rolesParam = urlParams.get("roles");
     if (rolesParam) {
       const parsedRoles = rolesParam.split(",").map((role) => {
@@ -28,7 +27,6 @@ const CreateAdminForm = () => {
       setRoles(parsedRoles);
     }
 
-    // Извлечение и установка параметров членов
     const membersParam = urlParams.get("members");
     if (membersParam) {
       const parsedMembers = membersParam.split(",").map((member) => {
@@ -71,7 +69,7 @@ const CreateAdminForm = () => {
     } else {
       tg.MainButton.show();
     }
-  }, [id, name, role, tg]);
+  }, [id, name, role, member, tg]);
 
   const onChangeId = (e) => {
     setId(e.target.value);

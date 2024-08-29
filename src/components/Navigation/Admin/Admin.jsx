@@ -16,6 +16,7 @@ const AdminForm = () => {
           <Link to={`/create_admin?roles=${roles}&members=${members}`}>
             Create admin
           </Link>
+          <Link to="/invitesform">Invites</Link>
         </li>
       </ul>
     </nav>

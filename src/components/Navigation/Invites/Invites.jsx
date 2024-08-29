@@ -7,6 +7,7 @@ function InvitesForm() {
     <nav>
       <ul>
         <li>
+          <Link to="/guest_invite">Create Guest Invite Code</Link>
           <Link to="/approve_student">Approve student</Link>
           <Link to="/guest_list">Guest list</Link>
         </li>

@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom";
 import "../Forms.css";
 import { useTelegram } from "../../../hooks/useTelegram";
 
-const formType = "create_admin";
+const formType = "type_create_admin";
 
 const CreateAdminForm = () => {
   const [id, setId] = useState("");
@@ -17,7 +17,6 @@ const CreateAdminForm = () => {
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    console.log("url params: ", urlParams.toString());
 
     const rolesParam = urlParams.get("roles");
     if (rolesParam) {

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import "../Navigation.css";
 import { useTelegram } from "../../../hooks/useTelegram";
 import Button from "../../Button/Button";
@@ -7,7 +7,12 @@ import Button from "../../Button/Button";
 const formType = "type_qr";
 
 function RegistrationForm() {
-  const { tg, user } = useTelegram();
+  const location = useLocation();
+  const urlParams = new URLSearchParams(location.search);
+
+  const members = urlParams.get("members");
+
+  const { tg } = useTelegram();
 
   const qrCallback = (text) => {
     const data = {
@@ -31,7 +36,7 @@ function RegistrationForm() {
           <Link to="/regform_guest">Register Guest</Link>
         </li>
         <li>
-          <Link to="/regform_study">Register Study</Link>
+          <Link to={`/regform_study?members=${members}`}>Register Study</Link>
         </li>
       </ul>
       <ul>

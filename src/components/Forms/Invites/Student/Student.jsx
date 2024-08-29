@@ -14,11 +14,11 @@ const CreateInviteStudent = () => {
       form_type: formType,
       user_data: {
         invite_code: inviteCode,
-        invite_title: inviteTitle,
+        expire_code: expireDate,
       },
     };
     tg.sendData(JSON.stringify(data));
-  }, [inviteCode, inviteTitle, tg]);
+  }, [inviteCode, expireDate, tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
@@ -39,7 +39,7 @@ const CreateInviteStudent = () => {
     } else {
       tg.MainButton.show();
     }
-  }, [inviteCode, inviteTitle, tg]);
+  }, [inviteCode, expireDate, tg]);
 
   const onChangeInviteCode = (e) => {
     setInviteCode(e.target.value);

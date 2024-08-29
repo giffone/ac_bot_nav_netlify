@@ -34,7 +34,7 @@ const CreateInviteStudent = () => {
   }, [tg]);
 
   useEffect(() => {
-    if (!inviteCode || !inviteTitle) {
+    if (!inviteCode || !expireDate) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();

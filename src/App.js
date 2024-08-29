@@ -12,7 +12,8 @@ import CreateAdminForm from "./components/Forms/Admin/Admin";
 import InvitesForm from "./components/Navigation/Invites/Invites";
 import ApproveStudent from "./components/Forms/Invites/Student/Student";
 import GuestList from "./components/Forms/Invites/Guest/Guest";
-import CreateGuestInvite from "./components/Forms/Invites/Guest/Guest";
+import CreateInviteGuest from "./components/Forms/Invites/Guest/Guest";
+import CreateInviteStudent from "./components/Forms/Invites/Student/Student";
 
 function App() {
   const { tg } = useTelegram();
@@ -32,7 +33,8 @@ function App() {
         <Route path={"regform_guest"} element={<RegisterFormGuest />} />
         {/* invites */}
         <Route path={"invitesform"} element={<InvitesForm />} />
-        <Route path={"guest_invite"} element={<CreateGuestInvite />} />
+        <Route path={"invite_guest"} element={<CreateInviteGuest />} />
+        <Route path={"invite_student"} element={<CreateInviteStudent />} />
         <Route path={"approve_student"} element={<ApproveStudent />} />
         <Route path={"guest_list"} element={<GuestList />} />
         {/* admins */}

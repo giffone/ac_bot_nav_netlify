@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
 
-const formType = "type_create_guest_invite";
+const formType = "type_create_invite_guest";
 
-const CreateGuestInvite = () => {
+const CreateInviteGuest = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [inviteTitle, setInviteTitle] = useState("");
   const { tg } = useTelegram();
@@ -70,4 +70,4 @@ const CreateGuestInvite = () => {
   );
 };
 
-export default CreateGuestInvite;
+export default CreateInviteGuest;

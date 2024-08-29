@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
 
-const formType = "type_create_student_invite";
+const formType = "type_create_invite_student";
 
-const CreateStudentInvite = () => {
+const CreateInviteStudent = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [expireDate, setExpireDate] = useState("");
   const { tg } = useTelegram();
@@ -70,4 +70,4 @@ const CreateStudentInvite = () => {
   );
 };
 
-export default CreateStudentInvite;
+export default CreateInviteStudent;

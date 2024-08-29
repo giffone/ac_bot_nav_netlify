@@ -14,7 +14,7 @@ const CreateInviteStudent = () => {
       form_type: formType,
       user_data: {
         invite_code: inviteCode,
-        expire_code: expireDate,
+        expire_date: expireDate,
       },
     };
     tg.sendData(JSON.stringify(data));

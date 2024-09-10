@@ -10,7 +10,7 @@ function RegForm() {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
 
-  const members = urlParams.get("members");
+  const orgs = urlParams.get("orgs");
 
   const { tg } = useTelegram();
 
@@ -36,7 +36,7 @@ function RegForm() {
           <Link to="/regform_guest">Register Guest</Link>
         </li>
         <li>
-          <Link to={`/regform_student?members=${members}`}>Register Study</Link>
+          <Link to={`/regform_student?orgs=${orgs}`}>Register Study</Link>
         </li>
       </ul>
       <ul>

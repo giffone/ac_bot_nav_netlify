@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
 
@@ -14,6 +14,20 @@ const StudentRegForm = () => {
   const [members, setMembers] = useState([]);
   const { tg } = useTelegram();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  tg.BackButton.show();
+
+  const onClickBackButton = () => {
+    navigate("/regform");
+  };
+
+  useEffect(() => {
+    tg.BackButton.onClick(onSendData);
+    return () => {
+      tg.BackButton.offClick(onSendData);
+    };
+  }, [onClickBackButton, tg]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -42,9 +56,11 @@ const StudentRegForm = () => {
   }, [firstName, lastName, login, inviteCode, member, tg]);
 
   useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
+    tg.MainButton.onClick(onSendData);
+    // tg.onEvent("mainButtonClicked", onSendData);
     return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
+      tg.MainButton.offClick(onSendData);
+      // tg.offEvent("mainButtonClicked", onSendData);
     };
   }, [onSendData, tg]);
 

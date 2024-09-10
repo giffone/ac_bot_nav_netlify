@@ -7,13 +7,13 @@ const AdminForm = () => {
   const urlParams = new URLSearchParams(location.search);
 
   const roles = urlParams.get("roles");
-  const members = urlParams.get("members");
+  const orgs = urlParams.get("orgs");
 
   return (
     <nav>
       <ul>
         <li>
-          <Link to={`/create_admin?roles=${roles}&members=${members}`}>
+          <Link to={`/create_admin?roles=${roles}&orgs=${orgs}`}>
             Create admin
           </Link>
           <Link to="/invitesform">Invites</Link>

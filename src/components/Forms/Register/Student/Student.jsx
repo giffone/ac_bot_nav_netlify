@@ -16,7 +16,7 @@ const StudentRegForm = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  tg.BackButton.isVisible();
+  tg.BackButton.isVisible = true;
   tg.BackButton.show();
 
   const onClickBackButton = () => {

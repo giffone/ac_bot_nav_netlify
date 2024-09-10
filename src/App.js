@@ -20,6 +20,7 @@ function App() {
 
   useEffect(() => {
     tg.ready();
+    tg.expand(); // open fully
   }, []);
 
   return (

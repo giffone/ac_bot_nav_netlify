@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
+import { useBackButton } from "../../../../hooks/useBackButton";
 
 const formType = "type_student_reg_form";
 
@@ -14,21 +15,8 @@ const StudentRegForm = () => {
   const [orgs, setOrgs] = useState([]);
   const { tg } = useTelegram();
   const location = useLocation();
-  const navigate = useNavigate();
 
-  tg.BackButton.isVisible = true;
-  tg.BackButton.show();
-
-  const onClickBackButton = () => {
-    navigate("/regform");
-  };
-
-  useEffect(() => {
-    tg.BackButton.onClick(onClickBackButton);
-    return () => {
-      tg.BackButton.offClick(onClickBackButton);
-    };
-  }, [onClickBackButton, tg]);
+  useBackButton("/regform");
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
@@ -42,34 +30,29 @@ const StudentRegForm = () => {
     }
   }, [location.search]);
 
-  const onSendData = useCallback(() => {
-    const data = {
-      form_type: formType,
-      user_data: {
-        first_name: firstName,
-        last_name: lastName,
-        login: login,
-        invite_code: inviteCode,
-        org_id: org,
-      },
-    };
-    tg.sendData(JSON.stringify(data));
-  }, [firstName, lastName, login, inviteCode, org, tg]);
-
-  useEffect(() => {
-    tg.MainButton.onClick(onSendData);
-    // tg.onEvent("mainButtonClicked", onSendData);
-    return () => {
-      tg.MainButton.offClick(onSendData);
-      // tg.offEvent("mainButtonClicked", onSendData);
-    };
-  }, [onSendData, tg]);
-
   useEffect(() => {
     tg.MainButton.setParams({
       text: "Send data",
     });
-  }, [tg]);
+
+    tg.MainButton.onClick(() => {
+      const data = {
+        form_type: formType,
+        user_data: {
+          first_name: firstName,
+          last_name: lastName,
+          login: login,
+          invite_code: inviteCode,
+          org_id: org,
+        },
+      };
+      tg.sendData(JSON.stringify(data));
+    });
+
+    return () => {
+      tg.MainButton.offClick();
+    };
+  }, [firstName, lastName, login, inviteCode, org, tg]);
 
   useEffect(() => {
     if (!firstName || !lastName || !login || !inviteCode || !org) {

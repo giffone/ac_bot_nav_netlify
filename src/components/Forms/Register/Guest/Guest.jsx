@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
+import { useBackButton } from "../../../../hooks/useBackButton";
 
 const formType = "type_guest_reg_form";
 
@@ -10,30 +11,29 @@ const GuestRegForm = () => {
   const [inviteCode, setInviteCode] = useState();
   const { tg } = useTelegram();
 
-  const onSendData = useCallback(() => {
-    const data = {
-      form_type: formType,
-      user_data: {
-        first_name: firstName,
-        last_name: lastName,
-        invite_code: inviteCode,
-      },
-    };
-    tg.sendData(JSON.stringify(data));
-  }, [firstName, lastName, inviteCode]);
-
-  useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
-    return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
-    };
-  }, [onSendData]);
+  useBackButton("/regform");
 
   useEffect(() => {
     tg.MainButton.setParams({
       text: "Send data",
     });
-  }, []);
+  
+    tg.MainButton.onClick(() => {
+      const data = {
+        form_type: formType,
+        user_data: {
+          first_name: firstName,
+          last_name: lastName,
+          invite_code: inviteCode,
+        },
+      };
+      tg.sendData(JSON.stringify(data));
+    });
+
+    return () => {
+      tg.MainButton.offClick();
+    };
+  }, [firstName, lastName, inviteCode, tg]);
 
   useEffect(() => {
     if (!firstName || !lastName || !inviteCode) {

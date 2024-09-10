@@ -2,7 +2,7 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../Navigation.css";
 import { useTelegram } from "../../../hooks/useTelegram";
-// import { useBackButton } from "../../../hooks/useBackButton";
+import { useBackButton } from "../../../hooks/useBackButton";
 import Button from "../../Button/Button";
 
 const formType = "type_qr";
@@ -11,11 +11,11 @@ function RegForm() {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
 
-  // useBackButton("close");
-
   const orgs = urlParams.get("orgs");
 
   const { tg } = useTelegram();
+
+  tg.BackButton.isVisible = false;
 
   const qrCallback = (text) => {
     const data = {

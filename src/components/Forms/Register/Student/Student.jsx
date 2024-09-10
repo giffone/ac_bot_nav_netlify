@@ -3,9 +3,9 @@ import { useLocation } from "react-router-dom";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
 
-const formType = "type_study";
+const formType = "type_student_reg_form";
 
-const RegisterFormStudy = () => {
+const StudentRegForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [login, setLogin] = useState("");
@@ -39,7 +39,7 @@ const RegisterFormStudy = () => {
       },
     };
     tg.sendData(JSON.stringify(data));
-  }, [ firstName, lastName, login, inviteCode, member, tg]);
+  }, [firstName, lastName, login, inviteCode, member, tg]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
@@ -55,7 +55,7 @@ const RegisterFormStudy = () => {
   }, [tg]);
 
   useEffect(() => {
-    if ( !firstName || !lastName || !login || !inviteCode || !member) {
+    if (!firstName || !lastName || !login || !inviteCode || !member) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
@@ -127,4 +127,4 @@ const RegisterFormStudy = () => {
   );
 };
 
-export default RegisterFormStudy;
+export default StudentRegForm;

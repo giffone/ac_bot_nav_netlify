@@ -2,9 +2,9 @@ import React, { useCallback, useEffect, useState } from "react";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
 
-const formType = "type_guest";
+const formType = "type_guest_reg_form";
 
-const RegisterFormGuest = () => {
+const GuestRegForm = () => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [inviteCode, setInviteCode] = useState();
@@ -20,7 +20,7 @@ const RegisterFormGuest = () => {
       },
     };
     tg.sendData(JSON.stringify(data));
-  }, [ firstName, lastName, inviteCode]);
+  }, [firstName, lastName, inviteCode]);
 
   useEffect(() => {
     tg.onEvent("mainButtonClicked", onSendData);
@@ -36,7 +36,7 @@ const RegisterFormGuest = () => {
   }, []);
 
   useEffect(() => {
-    if ( !firstName || !lastName || !inviteCode) {
+    if (!firstName || !lastName || !inviteCode) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
@@ -83,4 +83,4 @@ const RegisterFormGuest = () => {
   );
 };
 
-export default RegisterFormGuest;
+export default GuestRegForm;

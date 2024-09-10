@@ -6,7 +6,7 @@ import Button from "../../Button/Button";
 
 const formType = "type_qr";
 
-function RegistrationForm() {
+function RegForm() {
   const location = useLocation();
   const urlParams = new URLSearchParams(location.search);
 
@@ -36,7 +36,7 @@ function RegistrationForm() {
           <Link to="/regform_guest">Register Guest</Link>
         </li>
         <li>
-          <Link to={`/regform_study?members=${members}`}>Register Study</Link>
+          <Link to={`/regform_student?members=${members}`}>Register Study</Link>
         </li>
       </ul>
       <ul>
@@ -48,4 +48,4 @@ function RegistrationForm() {
   );
 }
 
-export default RegistrationForm;
+export default RegForm;

@@ -4,9 +4,9 @@ import { useTelegram } from "./hooks/useTelegram";
 import Header from "./components/Header/Header";
 import { Route, Routes } from "react-router-dom";
 import Main from "./components/Main/Main";
-import RegistrationForm from "./components/Navigation/Registration/Registration";
-import RegisterFormGuest from "./components/Forms/Register/Guest/Guest";
-import RegisterFormStudy from "./components/Forms/Register/Study/Study";
+import RegForm from "./components/Navigation/Registration/Registration";
+import GuestRegForm from "./components/Forms/Register/Guest/Guest";
+import StudentRegForm from "./components/Forms/Register/Student/Student";
 import AdminForm from "./components/Navigation/Admin/Admin";
 import CreateAdminForm from "./components/Forms/Admin/Admin";
 import InvitesForm from "./components/Navigation/Invites/Invites";
@@ -28,9 +28,9 @@ function App() {
       <Routes>
         <Route index element={<Main />} />
         {/* registration */}
-        <Route path={"regform"} element={<RegistrationForm />} />
-        <Route path={"regform_study"} element={<RegisterFormStudy />} />
-        <Route path={"regform_guest"} element={<RegisterFormGuest />} />
+        <Route path={"regform"} element={<RegForm />} />
+        <Route path={"regform_student"} element={<StudentRegForm />} />
+        <Route path={"regform_guest"} element={<GuestRegForm />} />
         {/* invites */}
         <Route path={"invitesform"} element={<InvitesForm />} />
         <Route path={"invite_guest"} element={<CreateInviteGuest />} />

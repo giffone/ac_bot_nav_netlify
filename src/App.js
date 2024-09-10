@@ -26,24 +26,21 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <Routes>
+       <Routes>
         <Route index element={<Main />} />
         {/* registration */}
-        <Route path={"regform"} element={<RegForm />}>
-          <Route path={"regform_student"} element={<StudentRegForm />} />
-          <Route path={"regform_guest"} element={<GuestRegForm />} />
-        </Route>
+        <Route path={"regform"} element={<RegForm />} />
+        <Route path={"regform/student"} element={<StudentRegForm />} />
+        <Route path={"regform/guest"} element={<GuestRegForm />} />
         {/* admin */}
-        <Route path={"adminform"} element={<AdminForm />}>
-          <Route path={"create_admin"} element={<CreateAdminForm />} />
-          {/* admin / invites */}
-          <Route path={"invitesform"} element={<InvitesForm />}>
-            <Route path={"invite_guest"} element={<CreateInviteGuest />} />
-            <Route path={"invite_student"} element={<CreateInviteStudent />} />
-            <Route path={"approve_student"} element={<ApproveStudent />} />
-            <Route path={"guest_list"} element={<GuestList />} />
-          </Route>
-        </Route>
+        <Route path={"adminform"} element={<AdminForm />} />
+        <Route path={"adminform/create_admin"} element={<CreateAdminForm />} />
+        {/* admin / invites */}
+        <Route path={"adminform/invitesform"} element={<InvitesForm />} />
+        <Route path={"adminform/invitesform/invite_guest"} element={<CreateInviteGuest />} />
+        <Route path={"adminform/invitesform/invite_student"} element={<CreateInviteStudent />} />
+        <Route path={"adminform/invitesform/approve_student"} element={<ApproveStudent />} />
+        <Route path={"adminform/invitesform/guest_list"} element={<GuestList />} />
       </Routes>
     </div>
   );

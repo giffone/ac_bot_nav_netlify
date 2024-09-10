@@ -35,10 +35,10 @@ function RegForm() {
     <nav>
       <ul>
         <li>
-          <Link to="/regform_guest">Register Guest</Link>
+          <Link to="guest">Register Guest</Link>
         </li>
         <li>
-          <Link to={`/regform_student?orgs=${orgs}`}>Register Study</Link>
+          <Link to={`student?orgs=${orgs}`}>Register Study</Link>
         </li>
       </ul>
       <ul>

@@ -9,6 +9,8 @@ const AdminForm = () => {
   const roles = urlParams.get("roles");
   const orgs = urlParams.get("orgs");
 
+  tg.BackButton.isVisible = false;
+
   return (
     <nav>
       <ul>

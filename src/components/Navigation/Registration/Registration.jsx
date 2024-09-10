@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../Navigation.css";
 import { useTelegram } from "../../../hooks/useTelegram";
-import { useBackButton } from "../../../hooks/useBackButton";
 import Button from "../../Button/Button";
 
 const formType = "type_qr";

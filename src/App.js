@@ -9,7 +9,7 @@ import GuestRegForm from "./components/Forms/Register/Guest/Guest";
 import StudentRegForm from "./components/Forms/Register/Student/Student";
 import AdminForm from "./components/Navigation/Admin/Admin";
 import CreateAdminForm from "./components/Forms/Admin/Admin";
-import InvitesForm from "./components/Navigation/Invites/Invites";
+import InvitesForm from "./components/Navigation/Admin/Invites/Invites";
 import ApproveStudent from "./components/Forms/Invites/Student/Student";
 import GuestList from "./components/Forms/Invites/Guest/Guest";
 import CreateInviteGuest from "./components/Forms/Invites/Guest/Guest";
@@ -29,18 +29,21 @@ function App() {
       <Routes>
         <Route index element={<Main />} />
         {/* registration */}
-        <Route path={"regform"} element={<RegForm />} />
-        <Route path={"regform_student"} element={<StudentRegForm />} />
-        <Route path={"regform_guest"} element={<GuestRegForm />} />
-        {/* invites */}
-        <Route path={"invitesform"} element={<InvitesForm />} />
-        <Route path={"invite_guest"} element={<CreateInviteGuest />} />
-        <Route path={"invite_student"} element={<CreateInviteStudent />} />
-        <Route path={"approve_student"} element={<ApproveStudent />} />
-        <Route path={"guest_list"} element={<GuestList />} />
-        {/* admins */}
-        <Route path={"adminform"} element={<AdminForm />} />
-        <Route path={"create_admin"} element={<CreateAdminForm />} />
+        <Route path={"regform"} element={<RegForm />}>
+          <Route path={"regform_student"} element={<StudentRegForm />} />
+          <Route path={"regform_guest"} element={<GuestRegForm />} />
+        </Route>
+        {/* admin */}
+        <Route path={"adminform"} element={<AdminForm />}>
+          <Route path={"create_admin"} element={<CreateAdminForm />} />
+          {/* admin / invites */}
+          <Route path={"invitesform"} element={<InvitesForm />}>
+            <Route path={"invite_guest"} element={<CreateInviteGuest />} />
+            <Route path={"invite_student"} element={<CreateInviteStudent />} />
+            <Route path={"approve_student"} element={<ApproveStudent />} />
+            <Route path={"guest_list"} element={<GuestList />} />
+          </Route>
+        </Route>
       </Routes>
     </div>
   );

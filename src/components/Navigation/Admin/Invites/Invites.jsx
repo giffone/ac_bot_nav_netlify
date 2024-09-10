@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "../../Navigation.css";
+import { useBackButton } from "../../../../hooks/useBackButton";
 
 function InvitesForm() {
+  useBackButton("/adminform");
+
   return (
     <nav>
       <ul>

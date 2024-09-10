@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
+import { useBackButton } from "../../../../hooks/useBackButton";
 
 const formType = "type_create_invite_guest";
 
@@ -8,6 +9,8 @@ const CreateInviteGuest = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [inviteTitle, setInviteTitle] = useState("");
   const { tg } = useTelegram();
+
+  useBackButton("/adminform/invitesform");
 
   const onSendData = useCallback(() => {
     const data = {

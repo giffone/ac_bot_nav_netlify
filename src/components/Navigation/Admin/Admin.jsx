@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import "../Navigation.css";
+import { useTelegram } from "../../../hooks/useTelegram";
 
 const AdminForm = () => {
   const location = useLocation();
@@ -8,6 +9,10 @@ const AdminForm = () => {
 
   const roles = urlParams.get("roles") || "";
   const orgs = urlParams.get("orgs") || "";
+
+  const { tg } = useTelegram();
+
+  tg.BackButton.isVisible = false;
 
   return (
     <div>

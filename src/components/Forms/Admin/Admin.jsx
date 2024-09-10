@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../Forms.css";
 import { useTelegram } from "../../../hooks/useTelegram";
+import { useBackButton } from "../../../hooks/useBackButton";
 
 const formType = "type_create_admin";
 
@@ -14,6 +15,8 @@ const CreateAdminForm = () => {
   const [members, setMembers] = useState([]);
   const { tg } = useTelegram();
   const location = useLocation();
+
+  useBackButton("/adminform");
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);

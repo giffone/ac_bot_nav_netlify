@@ -37,10 +37,10 @@ function App() {
         <Route path={"adminform/create_admin"} element={<CreateAdminForm />} />
         {/* admin / invites */}
         <Route path={"adminform/invitesform"} element={<InvitesForm />} />
-        <Route path={"adminform/invitesform/invite_guest"} element={<CreateInviteGuest />} />
-        <Route path={"adminform/invitesform/invite_student"} element={<CreateInviteStudent />} />
-        <Route path={"adminform/invitesform/approve_student"} element={<ApproveStudent />} />
-        <Route path={"adminform/invitesform/guest_list"} element={<GuestList />} />
+        <Route path={"adminform/invitesform/guest"} element={<CreateInviteGuest />} />
+        <Route path={"adminform/invitesform/student"} element={<CreateInviteStudent />} />
+        <Route path={"adminform/invitesform/student/approve"} element={<ApproveStudent />} />
+        <Route path={"adminform/invitesform/guest/list"} element={<GuestList />} />
       </Routes>
     </div>
   );

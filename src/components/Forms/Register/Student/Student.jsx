@@ -10,12 +10,13 @@ const StudentRegForm = () => {
   const [lastName, setLastName] = useState("");
   const [login, setLogin] = useState("");
   const [inviteCode, setInviteCode] = useState("");
-  const [member, setMember] = useState("");
-  const [members, setMembers] = useState([]);
+  const [org, setOrg] = useState("");
+  const [orgs, setOrgs] = useState([]);
   const { tg } = useTelegram();
   const location = useLocation();
   const navigate = useNavigate();
 
+  tg.BackButton.isVisible();
   tg.BackButton.show();
 
   const onClickBackButton = () => {
@@ -23,21 +24,21 @@ const StudentRegForm = () => {
   };
 
   useEffect(() => {
-    tg.BackButton.onClick(onSendData);
+    tg.BackButton.onClick(onClickBackButton);
     return () => {
-      tg.BackButton.offClick(onSendData);
+      tg.BackButton.offClick(onClickBackButton);
     };
   }, [onClickBackButton, tg]);
 
   useEffect(() => {
     const urlParams = new URLSearchParams(location.search);
-    const membersParam = urlParams.get("members");
-    if (membersParam) {
-      const parsedMembers = membersParam.split(",").map((member) => {
-        const [key, value] = member.split("=");
+    const orgsParam = urlParams.get("orgs");
+    if (orgsParam) {
+      const parsedOrgs = orgsParam.split(",").map((org) => {
+        const [key, value] = org.split("=");
         return { key, value };
       });
-      setMembers(parsedMembers);
+      setOrgs(parsedOrgs);
     }
   }, [location.search]);
 
@@ -49,11 +50,11 @@ const StudentRegForm = () => {
         last_name: lastName,
         login: login,
         invite_code: inviteCode,
-        member_id: member,
+        org_id: org,
       },
     };
     tg.sendData(JSON.stringify(data));
-  }, [firstName, lastName, login, inviteCode, member, tg]);
+  }, [firstName, lastName, login, inviteCode, org, tg]);
 
   useEffect(() => {
     tg.MainButton.onClick(onSendData);
@@ -71,12 +72,12 @@ const StudentRegForm = () => {
   }, [tg]);
 
   useEffect(() => {
-    if (!firstName || !lastName || !login || !inviteCode || !member) {
+    if (!firstName || !lastName || !login || !inviteCode || !org) {
       tg.MainButton.hide();
     } else {
       tg.MainButton.show();
     }
-  }, [login, firstName, lastName, inviteCode, member, tg]);
+  }, [login, firstName, lastName, inviteCode, org, tg]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);
@@ -94,8 +95,8 @@ const StudentRegForm = () => {
     setInviteCode(e.target.value);
   };
 
-  const onChangeMember = (e) => {
-    setMember(e.target.value);
+  const onChangeOrg = (e) => {
+    setOrg(e.target.value);
   };
 
   return (
@@ -129,11 +130,11 @@ const StudentRegForm = () => {
         value={inviteCode}
         onChange={onChangeInviteCode}
       />
-      <select value={member} onChange={onChangeMember} className={"select"}>
+      <select value={org} onChange={onChangeOrg} className={"select"}>
         <option value="" disabled>
-          Select member
+          Select organization
         </option>
-        {members.map(({ key, value }) => (
+        {orgs.map(({ key, value }) => (
           <option key={key} value={key}>
             {value}
           </option>

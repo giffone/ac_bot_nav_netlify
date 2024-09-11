@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
 import { useBackButton } from "../../../../hooks/useBackButton";
+import { useUrlParams } from "../../../../hooks/useUrlParams";
 
 const formType = "type_guest_reg_form";
 
@@ -9,7 +10,10 @@ const GuestRegForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [inviteCode, setInviteCode] = useState("");
+  const [org, setOrg] = useState("");
   const { sendData, mainBt } = useTelegram();
+  const { getMenu } = useUrlParams();
+  const orgs = getMenu("orgs");
 
   useBackButton("/regform");
 
@@ -20,13 +24,14 @@ const GuestRegForm = () => {
         first_name: firstName,
         last_name: lastName,
         invite_code: inviteCode,
+        org_id: org,
       },
     };
     sendData(data);
-  }, [firstName, lastName, inviteCode]);
+  }, [firstName, lastName, inviteCode, org]);
 
   useEffect(() => {
-    if (!firstName || !lastName || !inviteCode) {
+    if (!firstName || !lastName || !inviteCode || !org) {
       mainBt.hide();
     } else {
       mainBt.show();
@@ -36,7 +41,7 @@ const GuestRegForm = () => {
         mainBt.offClick(onSendData);
       };
     }
-  }, [firstName, lastName, inviteCode]);
+  }, [firstName, lastName, inviteCode, org]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);
@@ -48,6 +53,10 @@ const GuestRegForm = () => {
 
   const onChangeInviteCode = (e) => {
     setInviteCode(e.target.value);
+  };
+
+  const onChangeOrg = (e) => {
+    setOrg(e.target.value);
   };
 
   return (
@@ -67,6 +76,16 @@ const GuestRegForm = () => {
         value={lastName}
         onChange={onChangeLastName}
       />
+      <select value={org} onChange={onChangeOrg} className={"select"}>
+        <option value="" disabled>
+          Select organization
+        </option>
+        {orgs.map(({ key, value }) => (
+          <option key={key} value={key}>
+            {value}
+          </option>
+        ))}
+      </select>
       <input
         className={"input"}
         type="text"

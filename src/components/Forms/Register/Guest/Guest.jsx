@@ -23,7 +23,7 @@ const GuestRegForm = () => {
       },
     };
     sendData(data);
-  }, [firstName, lastName, inviteCode, sendData]);
+  }, [firstName, lastName, inviteCode]);
 
   useEffect(() => {
     if (!firstName || !lastName || !inviteCode) {
@@ -36,7 +36,7 @@ const GuestRegForm = () => {
         mainBt.offClick(onSendData);
       };
     }
-  }, [firstName, lastName, inviteCode, onSendData, mainBt]);
+  }, [firstName, lastName, inviteCode]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);

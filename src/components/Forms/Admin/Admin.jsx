@@ -13,7 +13,7 @@ const CreateAdminForm = () => {
   const [member, setMember] = useState("");
   const [roles, setRoles] = useState([]);
   const [members, setMembers] = useState([]);
-  const { mainB, sendData } = useTelegram();
+  const { mainBt, sendData } = useTelegram();
   const location = useLocation();
 
   useBackButton("/adminform");
@@ -54,24 +54,17 @@ const CreateAdminForm = () => {
   }, [id, name, role, member, sendData]);
 
   useEffect(() => {
-    mainB.setParams({
-      text: "Send data",
-    });
-
-    mainB.onClick(onSendData);
-
-    return () => {
-      mainB.offClick(onSendData);
-    };
-  }, [onSendData, mainB]);
-
-  useEffect(() => {
     if (!id || !name || !role || !member) {
-      mainB.hide();
+      mainBt.hide();
     } else {
-      mainB.show();
+      mainBt.show();
+      mainBt.onClick(onSendData);
+
+      return () => {
+        mainBt.offClick(onSendData);
+      };
     }
-  }, [id, name, role, member, mainB]);
+  }, [id, name, role, member, onSendData, mainBt]);
 
   const onChangeId = (e) => {
     setId(e.target.value);

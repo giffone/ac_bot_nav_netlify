@@ -24,17 +24,17 @@ const CreateInviteGuest = () => {
   }, [inviteCode, inviteTitle, tg]);
 
   useEffect(() => {
-    tg.onEvent("mainButtonClicked", onSendData);
-    return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
-    };
-  }, [onSendData, tg]);
-
-  useEffect(() => {
     tg.MainButton.setParams({
       text: "Send data",
     });
-  }, [tg]);
+
+    tg.onEvent("mainButtonClicked", onSendData);
+
+    
+    return () => {
+      tg.offEvent("mainButtonClicked", onSendData);
+    };
+  }, [tg, inviteCode, inviteTitle]);
 
   useEffect(() => {
     if (!inviteCode || !inviteTitle) {

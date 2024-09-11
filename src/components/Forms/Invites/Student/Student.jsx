@@ -24,16 +24,14 @@ const CreateInviteStudent = () => {
   }, [inviteCode, expireDate, tg]);
 
   useEffect(() => {
+    tg.MainButton.setParams({
+      text: "Send data",
+    });
+
     tg.onEvent("mainButtonClicked", onSendData);
     return () => {
       tg.offEvent("mainButtonClicked", onSendData);
     };
-  }, [onSendData, tg]);
-
-  useEffect(() => {
-    tg.MainButton.setParams({
-      text: "Send data",
-    });
   }, [tg]);
 
   useEffect(() => {

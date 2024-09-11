@@ -6,32 +6,11 @@ export function useTelegram() {
   };
 
   const sendData = (data) => {
+    tg.MainButton.setParams({
+      text: "Send data",
+    });
+
     tg.sendData(JSON.stringify(data));
-  };
-
-  const main = {
-    hide: (shouldHide) => {
-      if (shouldHide) {
-        tg.MainButton.hide();
-      } else {
-        tg.MainButton.show();
-      }
-    },
-    click: (data) => {
-      tg.MainButton.setParams({
-        text: "Send data",
-      });
-
-      tg.MainButton.onClick(() => {
-        sendData(data);
-      });
-
-      return () => {
-        tg.MainButton.offClick(() => {
-          sendData(data);
-        });
-      };
-    },
   };
 
   return {
@@ -39,7 +18,7 @@ export function useTelegram() {
     tg,
     sendData,
     backB: tg.BackButton,
-    main,
+    mainB: tg.MainButton,
     user: tg.initDataUnsafe?.user,
   };
 }

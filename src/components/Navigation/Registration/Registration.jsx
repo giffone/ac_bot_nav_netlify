@@ -9,7 +9,7 @@ const formType = "type_qr";
 function RegForm() {
   const location = useLocation();
 
-  const { backB, sendData } = useTelegram();
+  const { tg, backB, sendData } = useTelegram();
 
   backB.isVisible = false;
 

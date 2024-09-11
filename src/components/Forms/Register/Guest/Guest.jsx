@@ -6,9 +6,9 @@ import { useBackButton } from "../../../../hooks/useBackButton";
 const formType = "type_guest_reg_form";
 
 const GuestRegForm = () => {
-  const [firstName, setFirstName] = useState();
-  const [lastName, setLastName] = useState();
-  const [inviteCode, setInviteCode] = useState();
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [inviteCode, setInviteCode] = useState("");
   const { sendData, main } = useTelegram();
 
   useBackButton("/regform");
@@ -38,7 +38,7 @@ const GuestRegForm = () => {
   // }, [onSendData, mainB]);
   useEffect(() => {
     main.click(onSendData);
-  });
+  }, [onSendData, main]);
 
   useEffect(() => {
     main.hide(!firstName || !lastName || !inviteCode);
@@ -47,7 +47,7 @@ const GuestRegForm = () => {
     // } else {
     //   mainB.show();
     // }
-  }, [firstName, lastName, inviteCode, mainB]);
+  }, [firstName, lastName, inviteCode, main]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);

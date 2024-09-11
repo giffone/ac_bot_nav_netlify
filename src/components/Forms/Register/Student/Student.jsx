@@ -43,7 +43,7 @@ const StudentRegForm = () => {
         mainBt.offClick(onSendData);
       };
     }
-  }, [login, firstName, lastName, inviteCode, org]);
+  }, [firstName, lastName, login, inviteCode, org]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);

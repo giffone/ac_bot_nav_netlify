@@ -16,7 +16,7 @@ const GuestRegForm = () => {
   
 
   useEffect(() => {
-    const onSendData = useCallback(() => {
+    const onSendData = () => {
       const data = {
         form_type: formType,
         user_data: {
@@ -26,7 +26,7 @@ const GuestRegForm = () => {
         },
       };
       sendData(data);
-    }, [firstName, lastName, inviteCode, sendData]);
+    };
 
     main.click(onSendData)
     // mainB.setParams({

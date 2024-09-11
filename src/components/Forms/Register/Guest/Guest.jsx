@@ -52,7 +52,7 @@ const GuestRegForm = () => {
 
   return (
     <div className={"regform"}>
-      <h3>Input your personal data</h3>
+      <h3>Enter your personal data and the code you were given</h3>
       <input
         className={"input"}
         type="text"

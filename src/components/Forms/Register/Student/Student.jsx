@@ -13,7 +13,7 @@ const StudentRegForm = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [org, setOrg] = useState("");
   const [orgs, setOrgs] = useState([]);
-  const { tg } = useTelegram();
+  const { sendData, mainBt } = useTelegram();
   const location = useLocation();
 
   useBackButton("/regform");
@@ -30,37 +30,32 @@ const StudentRegForm = () => {
     }
   }, [location.search]);
 
-  useEffect(() => {
-    tg.MainButton.setParams({
-      text: "Send data",
-    });
-
-    tg.MainButton.onClick(() => {
-      const data = {
-        form_type: formType,
-        user_data: {
-          first_name: firstName,
-          last_name: lastName,
-          login: login,
-          invite_code: inviteCode,
-          org_id: org,
-        },
-      };
-      tg.sendData(JSON.stringify(data));
-    });
-
-    return () => {
-      tg.MainButton.offClick();
+  const onSendData = useCallback(() => {
+    const data = {
+      form_type: formType,
+      user_data: {
+        first_name: firstName,
+        last_name: lastName,
+        login: login,
+        invite_code: inviteCode,
+        org_id: org,
+      },
     };
-  }, [firstName, lastName, login, inviteCode, org, tg]);
+    sendData(data);
+  }, [firstName, lastName, login, inviteCode, org, sendData]);
 
   useEffect(() => {
     if (!firstName || !lastName || !login || !inviteCode || !org) {
-      tg.MainButton.hide();
+      mainBt.hide();
     } else {
-      tg.MainButton.show();
+      mainBt.show();
+      mainBt.onClick(onSendData);
+
+      return () => {
+        mainBt.offClick(onSendData);
+      };
     }
-  }, [login, firstName, lastName, inviteCode, org, tg]);
+  }, [login, firstName, lastName, inviteCode, org, onSendData, mainBt]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);

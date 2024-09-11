@@ -18,7 +18,7 @@ export function useTelegram() {
     tg,
     sendData,
     backB: tg.BackButton,
-    mainB: tg.MainButton,
+    mainBt: tg.MainButton,
     user: tg.initDataUnsafe?.user,
   };
 }

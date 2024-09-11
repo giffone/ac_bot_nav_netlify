@@ -19,9 +19,7 @@ export function useTelegram() {
     });
 
     return () => {
-      tg.MainButton.offClick(() => {
-        sendData(data);
-      });
+      tg.MainButton.offClick();
     };
   };
 

@@ -8,9 +8,6 @@ const formType = "type_qr";
 
 function RegForm() {
   const location = useLocation();
-  const urlParams = new URLSearchParams(location.search);
-
-  const orgs = urlParams.get("orgs");
 
   const { backB, sendData } = useTelegram();
 
@@ -35,10 +32,10 @@ function RegForm() {
     <nav>
       <ul>
         <li>
-          <Link to="guest">Registration as guest</Link>
+          <Link to={`guest${location.search}`}>Registration as guest</Link>
         </li>
         <li>
-          <Link to={`student?orgs=${orgs}`}>Registration as student</Link>
+          <Link to={`student${location.search}`}>Registration as student</Link>
         </li>
       </ul>
       <ul>

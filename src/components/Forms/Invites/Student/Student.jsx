@@ -8,7 +8,7 @@ const formType = "type_create_invite_student";
 const CreateInviteStudent = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [expireDate, setExpireDate] = useState("");
-  const { tg } = useTelegram();
+  const { tg, mainB } = useTelegram();
 
   useBackButton("/adminform/invitesform");
 
@@ -24,23 +24,24 @@ const CreateInviteStudent = () => {
   }, [inviteCode, expireDate, tg]);
 
   useEffect(() => {
-    tg.MainButton.setParams({
+    mainB.setParams({
       text: "Send data",
     });
 
-    tg.onEvent("mainButtonClicked", onSendData);
+    mainB.onClick(onSendData);
+
     return () => {
-      tg.offEvent("mainButtonClicked", onSendData);
+      mainB.offClick(onSendData);
     };
-  }, [tg]);
+  }, [mainB, onSendData]);
 
   useEffect(() => {
     if (!inviteCode || !expireDate) {
-      tg.MainButton.hide();
+      mainB.hide();
     } else {
-      tg.MainButton.show();
+      mainB.show();
     }
-  }, [inviteCode, expireDate, tg]);
+  }, [inviteCode, expireDate, mainB]);
 
   const onChangeInviteCode = (e) => {
     setInviteCode(e.target.value);

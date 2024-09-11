@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTelegram } from "./useTelegram";
 
-export const useBackButton = (backPath) => {
+export function useBackButton(backPath) {
   const { backB } = useTelegram();
   const navigate = useNavigate();
 

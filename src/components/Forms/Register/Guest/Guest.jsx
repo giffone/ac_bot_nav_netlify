@@ -9,7 +9,7 @@ const GuestRegForm = () => {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [inviteCode, setInviteCode] = useState();
-  const { tg, mainB } = useTelegram();
+  const { sendData, main } = useTelegram();
 
   useBackButton("/regform");
 
@@ -22,27 +22,31 @@ const GuestRegForm = () => {
         invite_code: inviteCode,
       },
     };
-    tg.sendData(JSON.stringify(data));
-  }, [firstName, lastName, inviteCode, tg]);
+    sendData(data);
+  }, [firstName, lastName, inviteCode, sendData]);
+
+  // useEffect(() => {
+  //   mainB.setParams({
+  //     text: "Send data",
+  //   });
+
+  //   mainB.onClick(onSendData);
+
+  //   return () => {
+  //     mainB.offClick(onSendData);
+  //   };
+  // }, [onSendData, mainB]);
+  useEffect(() => {
+    main.click(onSendData);
+  });
 
   useEffect(() => {
-    mainB.setParams({
-      text: "Send data",
-    });
-  
-    mainB.onClick(onSendData);
-
-    return () => {
-      tg.MainButton.offClick(onSendData);
-    };
-  }, [onSendData, tg, mainB]);
-
-  useEffect(() => {
-    if (!firstName || !lastName || !inviteCode) {
-      mainB.hide();
-    } else {
-      mainB.show();
-    }
+    main.hide(!firstName || !lastName || !inviteCode);
+    // if (!firstName || !lastName || !inviteCode) {
+    //   mainB.hide();
+    // } else {
+    //   mainB.show();
+    // }
   }, [firstName, lastName, inviteCode, mainB]);
 
   const onChangeFirstName = (e) => {

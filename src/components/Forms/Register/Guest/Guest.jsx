@@ -25,28 +25,21 @@ const GuestRegForm = () => {
     sendData(data);
   }, [firstName, lastName, inviteCode, sendData]);
 
-  // useEffect(() => {
-  //   mainB.setParams({
-  //     text: "Send data",
-  //   });
-
-  //   mainB.onClick(onSendData);
-
-  //   return () => {
-  //     mainB.offClick(onSendData);
-  //   };
-  // }, [onSendData, mainB]);
   useEffect(() => {
-    main.click(onSendData);
+    main.click(onSendData)
+    // mainB.setParams({
+    //   text: "Send data",
+    // });
+
+    // mainB.onClick(onSendData);
+
+    // return () => {
+    //   mainB.offClick(onSendData);
+    // };
   }, [onSendData, main]);
 
   useEffect(() => {
     main.hide(!firstName || !lastName || !inviteCode);
-    // if (!firstName || !lastName || !inviteCode) {
-    //   mainB.hide();
-    // } else {
-    //   mainB.show();
-    // }
   }, [firstName, lastName, inviteCode, main]);
 
   const onChangeFirstName = (e) => {

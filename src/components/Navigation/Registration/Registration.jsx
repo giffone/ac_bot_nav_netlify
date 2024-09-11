@@ -12,9 +12,9 @@ function RegForm() {
 
   const orgs = urlParams.get("orgs");
 
-  const { tg } = useTelegram();
+  const { backB, sendData } = useTelegram();
 
-  tg.BackButton.isVisible = false;
+  backB.isVisible = false;
 
   const qrCallback = (text) => {
     const data = {
@@ -23,7 +23,7 @@ function RegForm() {
         qr_text: text,
       },
     };
-    tg.sendData(JSON.stringify(data));
+    sendData(data);
     return true;
   };
 

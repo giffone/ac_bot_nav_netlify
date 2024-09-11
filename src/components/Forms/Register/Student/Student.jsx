@@ -1,9 +1,8 @@
 import React, { useCallback, useEffect, useState } from "react";
-// import { useLocation } from "react-router-dom";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
 import { useBackButton } from "../../../../hooks/useBackButton";
-import { useUrlParams } from "../../../../hooks/useMenu";
+import { useUrlParams } from "../../../../hooks/useUrlParams";
 
 const formType = "type_student_reg_form";
 
@@ -13,26 +12,11 @@ const StudentRegForm = () => {
   const [login, setLogin] = useState("");
   const [inviteCode, setInviteCode] = useState("");
   const [org, setOrg] = useState("");
-  const [orgs, setOrgs] = useState([]);
   const { sendData, mainBt } = useTelegram();
-  // const location = useLocation();
   const { getMenu } = useUrlParams();
+  const orgs = getMenu("orgs");
 
   useBackButton("/regform");
-
-  getMenu("orgs")
-
-  // useEffect(() => {
-  //   const urlParams = new URLSearchParams(location.search);
-  //   const orgsParam = urlParams.get("orgs");
-  //   if (orgsParam) {
-  //     const parsedOrgs = orgsParam.split(",").map((org) => {
-  //       const [key, value] = org.split("=");
-  //       return { key, value };
-  //     });
-  //     setOrgs(parsedOrgs);
-  //   }
-  // }, [location.search]);
 
   const onSendData = useCallback(() => {
     const data = {

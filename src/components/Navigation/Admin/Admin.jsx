@@ -5,10 +5,6 @@ import { useTelegram } from "../../../hooks/useTelegram";
 
 const AdminForm = () => {
   const location = useLocation();
-  const urlParams = new URLSearchParams(location.search);
-
-  const roles = urlParams.get("roles") || "";
-  const orgs = urlParams.get("orgs") || "";
 
   const { tg } = useTelegram();
 
@@ -19,7 +15,7 @@ const AdminForm = () => {
       <nav>
         <ul>
           <li>
-            <Link to={`create_admin?roles=${roles}&orgs=${orgs}`}>
+            <Link to={`create_admin${location.search}`}>
               Create Admin
             </Link>
             <Link to="invitesform">Invites</Link>

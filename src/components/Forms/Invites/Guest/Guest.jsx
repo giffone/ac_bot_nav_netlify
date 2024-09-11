@@ -8,7 +8,7 @@ const formType = "type_create_invite_guest";
 const CreateInviteGuest = () => {
   const [inviteCode, setInviteCode] = useState("");
   const [inviteTitle, setInviteTitle] = useState("");
-  const { mainB, sendData } = useTelegram();
+  const { sendData, mainBt } = useTelegram();
 
   useBackButton("/adminform/invitesform");
 
@@ -21,27 +21,20 @@ const CreateInviteGuest = () => {
       },
     };
     sendData(data);
-  }, [inviteCode, inviteTitle, sendData]);
-
-  useEffect(() => {
-    mainB.setParams({
-      text: "Send data",
-    });
-
-    mainB.onClick(onSendData);
-
-    return () => {
-      mainB.offClick(onSendData);
-    };
-  }, [onSendData, mainB]);
+  }, [inviteCode, inviteTitle]);
 
   useEffect(() => {
     if (!inviteCode || !inviteTitle) {
-      mainB.hide();
+      mainBt.hide();
     } else {
-      mainB.show();
+      mainBt.show();
+      mainBt.onClick(onSendData);
+
+      return () => {
+        mainBt.offClick(onSendData);
+      };
     }
-  }, [inviteCode, inviteTitle, mainB]);
+  }, [inviteCode, inviteTitle]);
 
   const onChangeInviteCode = (e) => {
     setInviteCode(e.target.value);

@@ -17,5 +17,5 @@ export const useBackButton = (backPath) => {
     return () => {
       backB.offClick(onClickBackButton);
     };
-  }, [backPath, navigate, tg]);
+  }, [backPath, navigate, backB]);
 };

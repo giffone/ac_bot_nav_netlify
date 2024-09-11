@@ -1,8 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+// import { useLocation } from "react-router-dom";
 import "../../Forms.css";
 import { useTelegram } from "../../../../hooks/useTelegram";
 import { useBackButton } from "../../../../hooks/useBackButton";
+import { useUrlParams } from "../../../../hooks/useMenu";
 
 const formType = "type_student_reg_form";
 
@@ -14,21 +15,24 @@ const StudentRegForm = () => {
   const [org, setOrg] = useState("");
   const [orgs, setOrgs] = useState([]);
   const { sendData, mainBt } = useTelegram();
-  const location = useLocation();
+  // const location = useLocation();
+  const { getMenu } = useUrlParams();
 
   useBackButton("/regform");
 
-  useEffect(() => {
-    const urlParams = new URLSearchParams(location.search);
-    const orgsParam = urlParams.get("orgs");
-    if (orgsParam) {
-      const parsedOrgs = orgsParam.split(",").map((org) => {
-        const [key, value] = org.split("=");
-        return { key, value };
-      });
-      setOrgs(parsedOrgs);
-    }
-  }, [location.search]);
+  getMenu("orgs")
+
+  // useEffect(() => {
+  //   const urlParams = new URLSearchParams(location.search);
+  //   const orgsParam = urlParams.get("orgs");
+  //   if (orgsParam) {
+  //     const parsedOrgs = orgsParam.split(",").map((org) => {
+  //       const [key, value] = org.split("=");
+  //       return { key, value };
+  //     });
+  //     setOrgs(parsedOrgs);
+  //   }
+  // }, [location.search]);
 
   const onSendData = useCallback(() => {
     const data = {

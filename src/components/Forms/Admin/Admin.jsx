@@ -10,9 +10,9 @@ const CreateAdminForm = () => {
   const [id, setId] = useState("");
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
-  const [member, setMember] = useState("");
+  const [org, setOrg] = useState("");
   const [roles, setRoles] = useState([]);
-  const [members, setMembers] = useState([]);
+  const [orgMenu, setOrgMenu] = useState([]);
   const { mainBt, sendData } = useTelegram();
   const location = useLocation();
 
@@ -23,20 +23,20 @@ const CreateAdminForm = () => {
 
     const rolesParam = urlParams.get("roles");
     if (rolesParam) {
-      const parsedRoles = rolesParam.split(",").map((role) => {
-        const [key, value] = role.split("=");
+      const menu = rolesParam.split(",").map((item) => {
+        const [key, value] = item.split("=");
         return { key, value };
       });
-      setRoles(parsedRoles);
+      setRoles(menu);
     }
 
-    const membersParam = urlParams.get("members");
-    if (membersParam) {
-      const parsedMembers = membersParam.split(",").map((member) => {
-        const [key, value] = member.split("=");
+    const orgsParam = urlParams.get("orgs");
+    if (orgsParam) {
+      const menu = orgsParam.split(",").map((item) => {
+        const [key, value] = item.split("=");
         return { key, value };
       });
-      setMembers(parsedMembers);
+      setOrgMenu(menu);
     }
   }, [location.search]);
 
@@ -47,14 +47,14 @@ const CreateAdminForm = () => {
         telegram_id: id,
         user_name: name,
         role_id: role,
-        member_id: member,
+        organization_id: org,
       },
     };
     sendData(data);
-  }, [id, name, role, member, sendData]);
+  }, [id, name, role, org]);
 
   useEffect(() => {
-    if (!id || !name || !role || !member) {
+    if (!id || !name || !role || !org) {
       mainBt.hide();
     } else {
       mainBt.show();
@@ -64,7 +64,7 @@ const CreateAdminForm = () => {
         mainBt.offClick(onSendData);
       };
     }
-  }, [id, name, role, member, onSendData, mainBt]);
+  }, [id, name, role, org]);
 
   const onChangeId = (e) => {
     setId(e.target.value);
@@ -78,8 +78,8 @@ const CreateAdminForm = () => {
     setRole(e.target.value);
   };
 
-  const onChangeMember = (e) => {
-    setMember(e.target.value);
+  const onChangeOrg = (e) => {
+    setOrg(e.target.value);
   };
 
   return (
@@ -109,11 +109,11 @@ const CreateAdminForm = () => {
           </option>
         ))}
       </select>
-      <select value={member} onChange={onChangeMember} className={"select"}>
+      <select value={org} onChange={onChangeOrg} className={"select"}>
         <option value="" disabled>
-          Select member
+          Select organization
         </option>
-        {members.map(({ key, value }) => (
+        {orgMenu.map(({ key, value }) => (
           <option key={key} value={key}>
             {value}
           </option>

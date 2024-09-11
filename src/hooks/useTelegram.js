@@ -13,25 +13,12 @@ export function useTelegram() {
     tg.sendData(JSON.stringify(data));
   };
 
-  const mClick = (data) => {
-    tg.MainButton.onClick(() => {
-      sendData(data);
-    });
-
-    return () => {
-      tg.MainButton.offClick(() => {
-        sendData(data);
-      });
-    };
-  };
-
   return {
     onClose,
     tg,
     sendData,
     backB: tg.BackButton,
     mainBt: tg.MainButton,
-    mClick,
     user: tg.initDataUnsafe?.user,
   };
 }

@@ -9,7 +9,7 @@ export function useTelegram() {
     tg.sendData(JSON.stringify(data));
   };
 
-  const mainB = {
+  const main = {
     hide: (shouldHide) => {
       if (shouldHide) {
         tg.MainButton.hide();
@@ -17,15 +17,15 @@ export function useTelegram() {
         tg.MainButton.show();
       }
     },
-    click: (callback = ()=>{}) => {
+    click: (data) => {
       tg.MainButton.setParams({
         text: "Send data",
       });
 
-      tg.MainButton.onClick(callback);
+      tg.MainButton.onClick(sendData(data));
 
       return () => {
-        tg.MainButton.offClick(callback);
+        tg.MainButton.offClick(sendData(data));
       };
     },
   };
@@ -35,7 +35,7 @@ export function useTelegram() {
     tg,
     sendData,
     backB: tg.BackButton,
-    mainB,
+    main,
     user: tg.initDataUnsafe?.user,
   };
 }

@@ -9,40 +9,29 @@ const GuestRegForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [inviteCode, setInviteCode] = useState("");
-  const { sendData, main } = useTelegram();
+  const { sendData, mainB } = useTelegram();
 
   useBackButton("/regform");
 
-  
-
-  useEffect(() => {
-    const onSendData = () => {
-      const data = {
-        form_type: formType,
-        user_data: {
-          first_name: firstName,
-          last_name: lastName,
-          invite_code: inviteCode,
-        },
-      };
-      sendData(data);
+  const onSendData = useCallback(() => {
+    const data = {
+      form_type: formType,
+      user_data: {
+        first_name: firstName,
+        last_name: lastName,
+        invite_code: inviteCode,
+      },
     };
-
-    main.click(onSendData)
-    // mainB.setParams({
-    //   text: "Send data",
-    // });
-
-    // mainB.onClick(onSendData);
-
-    // return () => {
-    //   mainB.offClick(onSendData);
-    // };
-  }, [firstName, lastName, inviteCode, sendData, main]);
+    sendData(data);
+  }, [firstName, lastName, inviteCode, sendData]);
 
   useEffect(() => {
-    main.hide(!firstName || !lastName || !inviteCode);
-  }, [firstName, lastName, inviteCode, main]);
+    mainB.click(onSendData);
+  }, [onSendData, mainB]);
+
+  useEffect(() => {
+    mainB.hide(!firstName || !lastName || !inviteCode);
+  }, [firstName, lastName, inviteCode, mainB]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);

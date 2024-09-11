@@ -22,10 +22,14 @@ export function useTelegram() {
         text: "Send data",
       });
 
-      tg.MainButton.onClick(sendData(data));
+      tg.MainButton.onClick(() => {
+        sendData(data);
+      });
 
       return () => {
-        tg.MainButton.offClick(sendData(data));
+        tg.MainButton.offClick(() => {
+          sendData(data);
+        });
       };
     },
   };

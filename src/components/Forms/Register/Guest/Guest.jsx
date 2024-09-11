@@ -9,32 +9,23 @@ const GuestRegForm = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [inviteCode, setInviteCode] = useState("");
-  const { sendData, mainBt } = useTelegram();
+  const { sendData, mainBt, mClick } = useTelegram();
 
   useBackButton("/regform");
-
-  const onSendData = useCallback(() => {
-    const data = {
-      form_type: formType,
-      user_data: {
-        first_name: firstName,
-        last_name: lastName,
-        invite_code: inviteCode,
-      },
-    };
-    sendData(data);
-  }, [firstName, lastName, inviteCode]);
 
   useEffect(() => {
     if (!firstName || !lastName || !inviteCode) {
       mainBt.hide();
     } else {
       mainBt.show();
-      mainBt.onClick(onSendData);
-
-      return () => {
-        mainBt.offClick(onSendData);
-      };
+      mClick({
+        form_type: formType,
+        user_data: {
+          first_name: firstName,
+          last_name: lastName,
+          invite_code: inviteCode,
+        },
+      });
     }
   }, [firstName, lastName, inviteCode]);
 

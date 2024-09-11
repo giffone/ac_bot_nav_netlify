@@ -42,7 +42,7 @@ const StudentRegForm = () => {
       },
     };
     sendData(data);
-  }, [firstName, lastName, login, inviteCode, org, sendData]);
+  }, [firstName, lastName, login, inviteCode, org]);
 
   useEffect(() => {
     if (!firstName || !lastName || !login || !inviteCode || !org) {
@@ -55,7 +55,7 @@ const StudentRegForm = () => {
         mainBt.offClick(onSendData);
       };
     }
-  }, [login, firstName, lastName, inviteCode, org, onSendData, mainBt]);
+  }, [login, firstName, lastName, inviteCode, org]);
 
   const onChangeFirstName = (e) => {
     setFirstName(e.target.value);

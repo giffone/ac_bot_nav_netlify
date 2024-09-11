@@ -17,20 +17,18 @@ const GuestRegForm = () => {
     tg.MainButton.setParams({
       text: "Send data",
     });
-
-    tg.MainButton.onClick(
-      useCallback(() => {
-        const data = {
-          form_type: formType,
-          user_data: {
-            first_name: firstName,
-            last_name: lastName,
-            invite_code: inviteCode,
-          },
-        };
-        tg.sendData(JSON.stringify(data));
-      })
-    );
+  
+    tg.MainButton.onClick(() => {
+      const data = {
+        form_type: formType,
+        user_data: {
+          first_name: firstName,
+          last_name: lastName,
+          invite_code: inviteCode,
+        },
+      };
+      tg.sendData(JSON.stringify(data));
+    });
 
     return () => {
       tg.MainButton.offClick();

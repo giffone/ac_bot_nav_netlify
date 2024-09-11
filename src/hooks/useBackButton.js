@@ -3,23 +3,19 @@ import { useNavigate } from "react-router-dom";
 import { useTelegram } from "./useTelegram";
 
 export const useBackButton = (backPath) => {
-  const { tg } = useTelegram();
+  const { backB } = useTelegram();
   const navigate = useNavigate();
 
   useEffect(() => {
     const onClickBackButton = () => {
-      if (backPath === "close") {
-        tg.close();
-      } else {
-        navigate(backPath);
-      }
+      navigate(backPath);
     };
 
-    tg.BackButton.show();
-    tg.BackButton.onClick(onClickBackButton);
+    backB.show();
+    backB.onClick(onClickBackButton);
 
     return () => {
-      tg.BackButton.offClick(onClickBackButton);
+      backB.offClick(onClickBackButton);
     };
   }, [backPath, navigate, tg]);
 };

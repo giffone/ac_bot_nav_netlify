@@ -8,6 +8,8 @@ export function useTelegram() {
   return {
     onClose,
     tg,
+    backB: tg.BackButton,
+    mainB: tg.MainButton,
     user: tg.initDataUnsafe?.user,
   };
 }

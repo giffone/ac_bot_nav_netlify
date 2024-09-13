@@ -14,6 +14,7 @@ import ApproveStudent from "./components/Forms/Invites/Student/Student";
 import GuestList from "./components/Forms/Invites/Guest/Guest";
 import CreateInviteGuest from "./components/Forms/Invites/Guest/Guest";
 import CreateInviteStudent from "./components/Forms/Invites/Student/Student";
+import QrScanPage from "./components/QrScanPage/QrScanPage";
 
 function App() {
   const { tg } = useTelegram();
@@ -41,6 +42,8 @@ function App() {
         <Route path={"adminform/invitesform/student"} element={<CreateInviteStudent />} />
         <Route path={"adminform/invitesform/student/approve"} element={<ApproveStudent />} />
         <Route path={"adminform/invitesform/guest/list"} element={<GuestList />} />
+        {/* qr */}
+        <Route path="qr_scan" element={<QrScanPage />} />
       </Routes>
     </div>
   );

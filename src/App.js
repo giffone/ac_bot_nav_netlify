@@ -10,8 +10,6 @@ import StudentRegForm from "./components/Forms/Register/Student/Student";
 import AdminForm from "./components/Navigation/Admin/Admin";
 import CreateAdminForm from "./components/Forms/Admin/Admin";
 import InvitesForm from "./components/Navigation/Admin/Invites/Invites";
-import ApproveStudent from "./components/Forms/Invites/Student/Student";
-import GuestList from "./components/Forms/Invites/Guest/Guest";
 import CreateInviteGuest from "./components/Forms/Invites/Guest/Guest";
 import CreateInviteStudent from "./components/Forms/Invites/Student/Student";
 import QrScanPage from "./components/QrScanPage/QrScanPage";
@@ -40,10 +38,12 @@ function App() {
         <Route path={"adminform/invitesform"} element={<InvitesForm />} />
         <Route path={"adminform/invitesform/guest"} element={<CreateInviteGuest />} />
         <Route path={"adminform/invitesform/student"} element={<CreateInviteStudent />} />
-        <Route path={"adminform/invitesform/student/approve"} element={<ApproveStudent />} />
-        <Route path={"adminform/invitesform/guest/list"} element={<GuestList />} />
+        <Route path={"adminform/invitesform/student/approve"} element={<Main />} />
+        <Route path={"adminform/invitesform/guest/list"} element={<Main />} />
         {/* qr */}
         <Route path="qr_scan" element={<QrScanPage />} />
+        {/* app */}
+        <Route path={"intra"} element={<Main />} />
       </Routes>
     </div>
   );

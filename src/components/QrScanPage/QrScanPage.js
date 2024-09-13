@@ -19,11 +19,7 @@ const QrScanPage = () => {
     tg.showScanQrPopup({ text: "Scan Campus QR Entrance" }, qrCallback);
   }, [tg]);
 
-  return (
-    <div>
-      <h1>Scanning QR Code...</h1>
-    </div>
-  );
+  return null;
 };
 
 export default QrScanPage;

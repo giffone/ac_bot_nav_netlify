@@ -25,7 +25,7 @@ const CreateAdminForm = () => {
         telegram_id: id,
         user_name: name,
         role_id: role,
-        organization_id: org,
+        org_id: org,
       },
     };
     sendData(data);
